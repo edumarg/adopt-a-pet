@@ -5,7 +5,7 @@ const Pets = ({ data }) => {
   return (
     <React.Fragment>
       {data.map((pet) => {
-        return <Pet key={data.indexOf(pet)} pet={pet} />;
+        return <Pet key={pet.id} pet={pet} />;
       })}
     </React.Fragment>
   );
