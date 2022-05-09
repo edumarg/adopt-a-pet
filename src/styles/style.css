@@ -48,3 +48,8 @@ body {
   margin: 0;
   text-overflow: ellipsis;
 }
+
+.pet img {
+  width: 100px;
+  min-height: 100px;
+}

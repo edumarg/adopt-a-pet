@@ -1,11 +1,13 @@
 import React from "react";
 
-const Pet = ({ data }) => {
+const Pet = ({ pet }) => {
+  const { name, animal, breed, img, imgAlt } = pet;
   return (
     <div className="pet">
-      <h2>{data.name}</h2>
-      <h3>{data.type}</h3>
-      <h3>{data.breed}</h3>
+      <h2>{name}</h2>
+      <h3>{animal}</h3>
+      <h3>{breed}</h3>
+      <img src={img} alt={imgAlt} />
     </div>
   );
 };
