@@ -1,4 +1,4 @@
-import Pets from "./components/Pets";
+import SearchParams from "./components/SearchParams ";
 
 function App() {
   const data = [
@@ -26,8 +26,8 @@ function App() {
   ];
   return (
     <div>
-      <h1 className="page-title">Adopt a Me!</h1>
-      <Pets data={data} />
+      <h1 className="main-title">Adopt a Me!</h1>
+      <SearchParams />
     </div>
   );
 }
