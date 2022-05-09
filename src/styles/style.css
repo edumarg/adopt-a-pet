@@ -1,0 +1,50 @@
+* {
+  box-sizing: border-box;
+  color: #333;
+}
+
+body {
+  background-color: #81a69b;
+  background-image: url(http://pets-images.dev-apis.com/pets/wallpaperB.jpg);
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.page-title {
+  display: inline-block;
+  background-image: url(http://static.frontendmasters.com/resources/2019-05-02-complete-intro-react-v5/image-logo.png);
+  filter: brightness(150%);
+  width: 279px;
+  height: 76px;
+  overflow: hidden;
+  text-indent: -9999px;
+  margin: 20px 0;
+}
+
+.pet {
+  width: 100%;
+  height: 130px;
+  display: block;
+  overflow: hidden;
+  margin: 25px 0;
+  border-bottom: #333 2px solid;
+}
+
+.pet h2 {
+  white-space: nowrap;
+  font-weight: normal;
+  font-size: 30px;
+  color: #333;
+  width: 95%;
+  overflow: hidden;
+  margin: 0;
+  text-overflow: ellipsis;
+}
+
+.pet h3 {
+  white-space: nowrap;
+  font-weight: normal;
+  font-size: 20px;
+  margin: 0;
+  text-overflow: ellipsis;
+}
