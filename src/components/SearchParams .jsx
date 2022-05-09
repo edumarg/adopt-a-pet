@@ -20,7 +20,7 @@ const SearchParams = ({ setPets }) => {
 
   useEffect(() => {
     requestPets();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleChange = (event) => {
     const value = event.target.value;
