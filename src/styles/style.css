@@ -21,7 +21,7 @@ body {
 }
 
 .pet {
-  width: 90%;
+  width: 100%;
   height: 130px;
   display: block;
   overflow: hidden;
@@ -90,7 +90,8 @@ body {
   width: 60px;
 }
 
-.search-params input {
+.search-params input,
+.search-params select {
   margin-top: 0.5rem;
   margin-bottom: 30px;
   font-size: 18px;
@@ -120,4 +121,43 @@ body {
 
 .search-params button:focus {
   border: 1px solid cornflowerblue;
+}
+
+
+@media only screen and (max-width: 1129px) {
+  header {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    width: 95%;
+    margin: 0 auto;
+    padding: 20px 0px 0px 0px;
+  }
+
+  .search-params {
+    width: 95%;
+  }
+
+  .search-params form {
+    margin-bottom: 20px;
+  }
+
+}
+
+@media only screen and (max-width: 945px) {
+  .search-params {
+    width: 95%;
+  }
+
+}
+
+@media only screen and (max-width: 600px) {
+  .pet {
+    height: 200px;
+  }
+
+  .image-container {
+    margin: 0 auto;
+    float: none;
+  }
 }
