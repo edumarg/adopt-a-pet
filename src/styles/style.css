@@ -48,6 +48,14 @@ body {
   text-overflow: ellipsis;
 }
 
+.pet h4 {
+  white-space: nowrap;
+  font-weight: normal;
+  font-size: 15px;
+  margin: 0;
+  text-overflow: ellipsis;
+}
+
 .pet img {
   width: 100px;
   min-height: 100px;
