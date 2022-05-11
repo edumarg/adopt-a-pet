@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import http from "../services/httpServices";
 
 const localCache = {};
 
@@ -18,11 +19,10 @@ const useBreedList = (animal) => {
     async function requestBreedList() {
       setBreedList([]);
       setStatus("loading");
-      const res = await fetch(
-        `http://pets-v2.dev-apis.com/breeds?animal=${animal}`
-      );
-      const json = await res.json();
-      localCache[animal] = json.breeds || [];
+      const res = await http.get(`/breeds?animal=${animal}`);
+      const data = res.data;
+      const breeds = data.breeds;
+      localCache[animal] = breeds || [];
       setBreedList(localCache[animal]);
       setStatus("loaded");
     }

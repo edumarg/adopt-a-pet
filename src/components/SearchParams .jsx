@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useBreedList from "../hooks/useBreedList";
-
+import http from "../services/httpServices";
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
 
 const SearchParams = ({ setPets }) => {
@@ -10,12 +10,14 @@ const SearchParams = ({ setPets }) => {
   const [breeds] = useBreedList(animal);
 
   async function requestPets() {
-    const res = await fetch(
-      `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
+    const res = await http.get(
+      `/pets?animal=${animal}&location=${location}&breed=${breed}`
     );
-    const json = await res.json();
 
-    setPets(json.pets);
+    const data = res.data;
+    const pets = data.pets;
+
+    setPets(pets);
   }
 
   useEffect(() => {
@@ -68,7 +70,9 @@ const SearchParams = ({ setPets }) => {
               handleChangeAnimal(event);
             }}
           >
-            <option />
+            <option value="" disabled selected>
+              Please select a Animal...{" "}
+            </option>
             {ANIMALS.map((animal) => (
               <option key={animal} value={animal} className="select-option">
                 {animal.toUpperCase()}
@@ -85,7 +89,9 @@ const SearchParams = ({ setPets }) => {
             onChange={(event) => handleChangeBreed(event)}
             onBlur={(event) => handleChangeBreed(event)}
           >
-            <option />
+            <option value="" disabled selected>
+              Please select a Breed...{" "}
+            </option>
             {breeds.map((breed) => (
               <option key={breed} value={breed}>
                 {breed}
