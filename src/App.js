@@ -20,9 +20,11 @@ function App() {
         draggable
         pauseOnHover
       />
-      <Link to="/home" className="main-title">
-        Adopt a Me!
-      </Link>
+      <header>
+        <Link to="/home" className="main-title">
+          Adopt a Me!
+        </Link>
+      </header>
       <Routes>
         <Route path="/home" element={<Search />} />
         <Route path="/details/:id" element={<Details />}></Route>

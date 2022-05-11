@@ -6,7 +6,6 @@ const Carousel = ({ images }) => {
     setActive(+event.target.dataset.index);
   };
 
-  console.log(images);
   return (
     <div className="carousel">
       <img src={images[active]} alt="animal" />
