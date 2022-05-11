@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { ToastContainer } from "react-toastify";
+import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
+import Search from "./components/Search";
+import Details from "./components/Details";
+import NotFound from "./components/NotFound";
 import "react-toastify/dist/ReactToastify.css";
-import SearchParams from "./components/SearchParams ";
-import Pets from "./components/Pets";
 
 function App() {
-  const [pets, setPets] = useState([]);
   return (
-    <div>
+    <BrowserRouter>
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -19,10 +20,17 @@ function App() {
         draggable
         pauseOnHover
       />
-      <h1 className="main-title">Adopt a Me!</h1>
-      <SearchParams setPets={setPets} />
-      <Pets data={pets} />
-    </div>
+      <Link to="/home" className="main-title">
+        Adopt a Me!
+      </Link>
+      <Routes>
+        <Route path="/home" element={<Search />} />
+        <Route path="/details/:id" element={<Details />}></Route>
+        <Route path="/not-found" element={<NotFound />} />
+        <Route exact path="/" element={<Navigate replace to="/home" />} />
+        <Route path="*" element={<Navigate replace to="/not-found" />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
