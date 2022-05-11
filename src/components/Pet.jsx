@@ -1,21 +1,23 @@
 import React from "react";
 
 const Pet = ({ pet }) => {
-  const { name, animal, breed, city, state, images } = pet;
+  const { name, animal, breed, city, state, images, id } = pet;
+
+  let image = !images.length ? "../images/pet.png" : images[0];
+
   return (
-    <div className="pet">
-      <div className="info">
-        <h2>{name}</h2>
-        <h3>{animal.toUpperCase()}</h3>
-        <h3>{breed}</h3>
-        <h4>{`${city},${state}`}</h4>
-      </div>
-      {images.length > 0 && (
-        <div className="image-container">
-          <img src={images[0]} alt={`${name} the ${animal}`} />
+    <a href={`/details/${id}`}>
+      <div className="pet">
+        <div className="info">
+          <h2>{name}</h2>
+          <h3>{`${animal.toUpperCase()} - ${breed}`}</h3>
+          <h4>{`${city},${state}`}</h4>
         </div>
-      )}
-    </div>
+        <div className="image-container">
+          <img src={image} alt={`${name} the ${animal}`} />
+        </div>
+      </div>
+    </a>
   );
 };
 

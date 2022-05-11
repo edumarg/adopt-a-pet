@@ -45,7 +45,7 @@ const SearchParams = ({ setPets }) => {
 
   return (
     <div className="search-params">
-      <form>
+      <form onSubmit={(event) => handleSubmit(event)}>
         <label htmlFor="location">
           Location
           <input
@@ -70,7 +70,7 @@ const SearchParams = ({ setPets }) => {
               handleChangeAnimal(event);
             }}
           >
-            <option value="" disabled selected>
+            <option value="" disabled default>
               Please select a Animal...{" "}
             </option>
             {ANIMALS.map((animal) => (
@@ -89,7 +89,7 @@ const SearchParams = ({ setPets }) => {
             onChange={(event) => handleChangeBreed(event)}
             onBlur={(event) => handleChangeBreed(event)}
           >
-            <option value="" disabled selected>
+            <option value="" disabled default>
               Please select a Breed...{" "}
             </option>
             {breeds.map((breed) => (
@@ -99,7 +99,7 @@ const SearchParams = ({ setPets }) => {
             ))}
           </select>
         </label>
-        <button onClick={(event) => handleSubmit(event)}>Submit</button>
+        <button>Submit</button>
       </form>
     </div>
   );
