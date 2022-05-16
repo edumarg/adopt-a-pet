@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import http from "../services/httpServices";
 import Carousel from "./Carousel";
+import Spinner from "./Spinner";
 
 const Details = () => {
   const [petInfo, setPetInfo] = useState({});
@@ -23,12 +24,12 @@ const Details = () => {
   return (
     <div className="details">
       {!name ? (
-        <h2>Loading...</h2>
+        <Spinner />
       ) : (
         <React.Fragment>
           <h2>{name}</h2>
           <h3>{`${animal?.toUpperCase()} - ${breed} - ${city},${state}`}</h3>
-          <button>Adopt {`${petInfo["name"]}`}</button>
+          <button className="details-btn">Adopt {`${petInfo["name"]}`}</button>
           <p>{`${description}`}</p>
           <Carousel images={images} />
         </React.Fragment>

@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import Search from "./components/Search";
 import Details from "./components/Details";
 import NotFound from "./components/NotFound";
+import ErrorBoundary from "./components/ErrorBoundaries";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
@@ -27,7 +28,14 @@ function App() {
       </header>
       <Routes>
         <Route path="/home" element={<Search />} />
-        <Route path="/details/:id" element={<Details />}></Route>
+        <Route
+          path="/details/:id"
+          element={
+            <ErrorBoundary>
+              <Details />{" "}
+            </ErrorBoundary>
+          }
+        ></Route>
         <Route path="/not-found" element={<NotFound />} />
         <Route exact path="/" element={<Navigate replace to="/home" />} />
         <Route path="*" element={<Navigate replace to="/not-found" />} />

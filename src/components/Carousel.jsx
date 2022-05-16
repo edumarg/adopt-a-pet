@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const Carousel = ({ images }) => {
   const [active, setActive] = useState(0);
   const handleIndexClick = (event) => {
-    setActive(+event.target.dataset.index);
+    setActive(Number(event.target.dataset.index));
   };
 
   return (
@@ -11,15 +11,20 @@ const Carousel = ({ images }) => {
       <img src={images[active]} alt="animal" />
       <div className="carousel-smaller">
         {images.map((photo, index) => (
-          // eslint-disable-next-line
-          <img
-            key={photo}
-            src={photo}
-            className={index === active ? "active" : ""}
-            alt="animal thumbnail"
-            onClick={(event) => handleIndexClick(event)}
-            data-index={index}
-          />
+          <button className="carousel-smaller-btn">
+            <img
+              key={photo}
+              src={photo}
+              className={
+                index === active
+                  ? "carousel-smaller-btn active"
+                  : "carousel-smaller-btn"
+              }
+              alt="animal thumbnail"
+              onClick={(event) => handleIndexClick(event)}
+              data-index={index}
+            />
+          </button>
         ))}
       </div>
     </div>
