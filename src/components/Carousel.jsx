@@ -11,9 +11,8 @@ const Carousel = ({ images }) => {
       <img src={images[active]} alt="animal" />
       <div className="carousel-smaller">
         {images.map((photo, index) => (
-          <button className="carousel-smaller-btn">
+          <button className="carousel-smaller-btn" key={photo}>
             <img
-              key={photo}
               src={photo}
               className={
                 index === active
