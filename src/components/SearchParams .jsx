@@ -12,11 +12,13 @@ const SearchParams = () => {
   const [breed, setBreed] = useState("");
   const [breeds] = useBreedList(animal);
   const [, setPets] = useContext(PetsContext);
-  const [, setPaginationData] = useContext(PaginationContext);
+  const [paginationData, setPaginationData] = useContext(PaginationContext);
 
   async function requestPets() {
     const res = await http.get(
-      `/pets?animal=${animal}&location=${location}&breed=${breed}`
+      `/pets?animal=${animal}&location=${location}&breed=${breed}&page=${
+        paginationData?.page || 0
+      }`
     );
 
     const data = res.data;
@@ -24,12 +26,17 @@ const SearchParams = () => {
     const { numberOfResults, startIndex, hasNext } = data;
 
     setPets(myPets);
-    setPaginationData({ numberOfResults, startIndex, hasNext });
+    setPaginationData({
+      ...paginationData,
+      numberOfResults,
+      startIndex,
+      hasNext,
+    });
   }
 
   useEffect(() => {
     requestPets();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [paginationData?.page]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleChange = (event) => {
     const value = event.target.value;
