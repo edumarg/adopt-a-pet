@@ -15,7 +15,7 @@ const Search = () => {
         <Spinner />
       ) : (
         <div>
-          <Pets data={pets} />
+          <Pets />
           <MyPagination />
         </div>
       )}

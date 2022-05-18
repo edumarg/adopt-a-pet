@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import Pet from "./Pet";
+import { PetsContext } from "../context/PetsContext";
 
-const Pets = ({ data }) => {
+const Pets = () => {
+  const [pets] = useContext(PetsContext);
   return (
     <React.Fragment>
-      {!data.length ? (
+      {!pets.length ? (
         <div className="pet">
           <h2>No Pets Found</h2>
         </div>
       ) : (
-        data.map((pet) => {
+        pets.map((pet) => {
           return <Pet key={pet.id} pet={pet} />;
         })
       )}
