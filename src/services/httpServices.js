@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-axios.defaults.baseURL = "http://pets-v2.dev-apis.com";
+axios.defaults.baseURL = "https://pets-v2.dev-apis.com";
 
 axios.interceptors.response.use(null, (error) => {
   const expectedError =
