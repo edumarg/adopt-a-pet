@@ -19,7 +19,7 @@ const Details = () => {
 
   useEffect(() => {
     getPetInfo();
-  }, [id]);
+  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const toggleModal = () => {
     setShowModal(!showModal);

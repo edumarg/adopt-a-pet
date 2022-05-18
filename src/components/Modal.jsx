@@ -11,7 +11,7 @@ const Modal = ({ children }) => {
     const modalRoot = document.getElementById("modal");
     modalRoot.appendChild(elementRef.current);
     return () => modalRoot.removeChild(elementRef.current);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return createPortal(<div>{children}</div>, elementRef.current);
 };

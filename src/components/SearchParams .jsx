@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import useBreedList from "../hooks/useBreedList";
 import http from "../services/httpServices";
+import { PetsContext } from "./../context/PetsContext";
+import { PaginationContext } from "./../context/PaginationContext";
+
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
 
-const SearchParams = ({ setPets }) => {
+const SearchParams = () => {
   const [location, setLocation] = useState("");
   const [animal, setAnimal] = useState("");
   const [breed, setBreed] = useState("");
   const [breeds] = useBreedList(animal);
+  const [, setPets] = useContext(PetsContext);
+  const [, setPaginationData] = useContext(PaginationContext);
 
   async function requestPets() {
     const res = await http.get(
@@ -15,9 +20,11 @@ const SearchParams = ({ setPets }) => {
     );
 
     const data = res.data;
-    const pets = data.pets;
+    const myPets = data.pets;
+    const { numberOfResults, startIndex, hasNext } = data;
 
-    setPets(pets);
+    setPets(myPets);
+    setPaginationData({ numberOfResults, startIndex, hasNext });
   }
 
   useEffect(() => {

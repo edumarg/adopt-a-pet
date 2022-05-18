@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import SearchParams from "./SearchParams ";
 import Spinner from "./Spinner";
 import Pets from "./Pets";
+import { PetsContext } from "../context/PetsContext";
 
 const Search = () => {
-  const [pets, setPets] = useState(undefined);
+  const [pets] = useContext(PetsContext);
+
   return (
     <div>
-      <SearchParams setPets={setPets} />
+      <SearchParams />
       {!pets ? <Spinner /> : <Pets data={pets} />}
     </div>
   );
