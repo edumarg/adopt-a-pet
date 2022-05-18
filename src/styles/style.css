@@ -251,7 +251,8 @@ header {
   opacity: 0.6;
 }
 
-.page-link {
+.page-link,
+.page-link>span {
   color: #ad343e
 }
 

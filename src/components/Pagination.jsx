@@ -1,27 +1,35 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import Pagination from "react-bootstrap/Pagination";
 import { PaginationContext } from "../context/PaginationContext";
+import { PetsContext } from "./../context/PetsContext";
 
 const MyPagination = () => {
   const [paginationData, setPaginationData] = useContext(PaginationContext);
+  const [pets, setPets] = useContext(PetsContext);
   const { numberOfResults, startIndex, hasNext } = paginationData;
   const pages = Math.floor(numberOfResults / 10 + 1);
   const [activePage, setActivePage] = useState(startIndex / 10 + 1);
 
   const handleClick = (number) => {
+    setPets(undefined);
     setActivePage(number);
     setPaginationData({ ...paginationData, page: number - 1 });
   };
 
-  const handleNext = () => {
-    if (activePage < pages) {
+  const handleNext = (e) => {
+    if (hasNext) {
+      e.target.blur();
+      setPets(undefined);
       setActivePage(activePage + 1);
       setPaginationData({ ...paginationData, page: activePage });
     }
   };
 
-  const handlePrevious = () => {
+  const handlePrevious = (e) => {
     if (activePage > 1) {
+      console.log("previous");
+      setPets(undefined);
+      e.target.blur();
       setActivePage(activePage - 1);
       setPaginationData({ ...paginationData, page: activePage - 2 });
     }
@@ -29,13 +37,15 @@ const MyPagination = () => {
 
   const handleFirst = () => {
     if (activePage > 1) {
+      setPets(undefined);
       setActivePage(1);
       setPaginationData({ ...paginationData, page: 0 });
     }
   };
 
   const handleLast = () => {
-    if (activePage < pages) {
+    if (hasNext) {
+      setPets(undefined);
       setActivePage(pages);
       setPaginationData({ ...paginationData, page: pages - 1 });
     }
@@ -58,21 +68,15 @@ const MyPagination = () => {
     <Pagination className="my-pagination">
       <Pagination.First
         onClick={() => handleFirst()}
-        disabled={activePage === 0}
+        disabled={activePage === 1}
       />
       <Pagination.Prev
-        onClick={() => handlePrevious()}
-        disabled={activePage === 0}
+        onClick={(e) => handlePrevious(e)}
+        disabled={activePage === 1}
       />
       {items}
-      <Pagination.Next
-        onClick={() => handleNext()}
-        disabled={activePage === pages}
-      />
-      <Pagination.Last
-        onClick={() => handleLast()}
-        disabled={activePage === pages}
-      />
+      <Pagination.Next onClick={(e) => handleNext(e)} disabled={!hasNext} />
+      <Pagination.Last onClick={() => handleLast()} disabled={!hasNext} />
     </Pagination>
   );
 };
