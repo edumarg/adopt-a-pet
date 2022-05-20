@@ -23,13 +23,14 @@ const SearchParams = () => {
 
     const data = res.data;
     const myPets = data.pets;
-    const { numberOfResults, startIndex, hasNext } = data;
+    const { numberOfResults, startIndex, endIndex, hasNext } = data;
 
     setPets(myPets);
     setPaginationData({
       ...paginationData,
       numberOfResults,
       startIndex,
+      endIndex,
       hasNext,
     });
   }

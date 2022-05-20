@@ -1,12 +1,15 @@
 import React, { useState, useContext } from "react";
 import Pagination from "react-bootstrap/Pagination";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import { PaginationContext } from "../context/PaginationContext";
 import { PetsContext } from "./../context/PetsContext";
 
 const MyPagination = () => {
   const [paginationData, setPaginationData] = useContext(PaginationContext);
   const [pets, setPets] = useContext(PetsContext);
-  const { numberOfResults, startIndex, hasNext } = paginationData;
+  const { numberOfResults, startIndex, endIndex, hasNext } = paginationData;
   const pages = Math.floor(numberOfResults / 10 + 1);
   const [activePage, setActivePage] = useState(startIndex / 10 + 1);
 
@@ -65,19 +68,35 @@ const MyPagination = () => {
   }
 
   return (
-    <Pagination className="my-pagination">
-      <Pagination.First
-        onClick={() => handleFirst()}
-        disabled={activePage === 1}
-      />
-      <Pagination.Prev
-        onClick={(e) => handlePrevious(e)}
-        disabled={activePage === 1}
-      />
-      {items}
-      <Pagination.Next onClick={(e) => handleNext(e)} disabled={!hasNext} />
-      <Pagination.Last onClick={() => handleLast()} disabled={!hasNext} />
-    </Pagination>
+    <Container>
+      <Row className="pagination-row">
+        <Col sm={12} md={4} lg={3}>
+          <p>
+            {`Showing ${startIndex + 1} to ${
+              endIndex + 1
+            } of ${numberOfResults} Results`}
+          </p>
+        </Col>
+        <Col fluid>
+          <Pagination className="my-pagination">
+            <Pagination.First
+              onClick={() => handleFirst()}
+              disabled={activePage === 1}
+            />
+            <Pagination.Prev
+              onClick={(e) => handlePrevious(e)}
+              disabled={activePage === 1}
+            />
+            {items}
+            <Pagination.Next
+              onClick={(e) => handleNext(e)}
+              disabled={!hasNext}
+            />
+            <Pagination.Last onClick={() => handleLast()} disabled={!hasNext} />
+          </Pagination>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

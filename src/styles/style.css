@@ -251,6 +251,10 @@ header {
   opacity: 0.6;
 }
 
+.pagination-row {
+  align-items: center;
+}
+
 .page-link,
 .page-link>span {
   color: #ad343e
@@ -259,6 +263,11 @@ header {
 .page-item.active .page-link {
   background-color: #ad343e;
   border-color: #ad343e;
+}
+
+.page-item.disabled {
+  cursor: not-allowed;
+
 }
 
 .page-link:hover,
