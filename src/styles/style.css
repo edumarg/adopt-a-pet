@@ -265,10 +265,16 @@ header {
   border-color: #ad343e;
 }
 
-.page-item.disabled,
-.page-item.disabled span,
 select:disabled {
   color: grey
+}
+
+.page-item.disabled,
+.page-item.disabled span {
+  border: transparent;
+  color: transparent;
+  background: transparent;
+  border: none
 }
 
 .page-link:hover,
