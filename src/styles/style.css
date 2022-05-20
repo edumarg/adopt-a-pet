@@ -265,9 +265,10 @@ header {
   border-color: #ad343e;
 }
 
-.page-item.disabled {
-  cursor: not-allowed;
-
+.page-item.disabled,
+.page-item.disabled span,
+select:disabled {
+  color: grey
 }
 
 .page-link:hover,
